@@ -1,6 +1,7 @@
 import tglImagesCommand from './toggleImagesCommand';
 import importCommand from './command-import-mjml';
 import exportCommand from './command-export-mjml';
+import API_KEY from '../config';
 
 export default (editor, opt = {}) => {
   const cmd = editor.Commands;
@@ -40,7 +41,7 @@ export default (editor, opt = {}) => {
       sender.set('active', 0);
       fetch('https://api.emailonacid.com/v5/email/tests', {
         method: 'POST',
-        headers: { 'Authorization': 'Basic NTY3ZWIzM2I4MzZhNjExYTExNjRkMWM2NmI0ZjcyMzQwZmZlYzliMTp1cHNlbGxpdDEyMw==' },
+        headers: { 'Authorization': 'Basic ' + API_KEY.EOA },
         body: JSON.stringify({
           "subject": "My Email Subject",
           "html": editor.Commands.run('mjml-get-code').html
