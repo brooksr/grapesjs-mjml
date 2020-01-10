@@ -3,7 +3,8 @@ export default () => {
     const srcPlh = '##';
 
     components.each((component) => {
-      if (component.get('type') === 'image') {
+      if (component.attributes.src) {
+        // || (component.attributes.attributes && component.attributes.attributes.src)
         const source = component.get('src');
 
         if (on) {
@@ -22,6 +23,7 @@ export default () => {
 
   return {
     run(editor) {
+      //debugger;
       const components = editor.getComponents();
       toggleImages(components);
     },

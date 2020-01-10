@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>GrapesJS Plugin</title>
+  <title>USI Email Designer</title>
   <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
   <script src="https://unpkg.com/grapesjs"></script>
   <script src="dist/grapesjs-mjml.min.js"></script>
@@ -12,6 +12,13 @@
     html {
       height: 100%;
       margin: 0;
+      background: #000;
+      color: #ddd;
+      font-family: Helvetica, sans-serif;
+    }
+
+    button {
+      cursor: pointer;
     }
 
     .cke_top {
@@ -27,116 +34,257 @@
       background: transparent !important;
       box-shadow: none !important;
     }
+
+    .gjs-cv-canvas,
+    .gjs-pn-commands {
+      width: 75%;
+    }
+
+    .gjs-pn-views-container {
+      width: 25%;
+    }
+
+    .gjs-pn-options {
+      right: 25%;
+    }
+
+    .content {
+      max-width: 1140px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 1em;
+      background: #222;
+    }
+
+    .input-group {
+      padding-bottom: 0.5em;
+    }
+
+    .input-group label {
+      width: 15%;
+      display: inline-block;
+    }
+
+    .input-group input {
+      width: 82%;
+      display: inline-block;
+      border-radius: 5px;
+      background: #eee;
+      padding: 0.5%;
+      border: none;
+    }
+
+    .tabs {
+      margin-top: 1em;
+    }
+
+    .tabs button {
+      background: #333;
+      border: none;
+      padding: 0.75em 1em;
+      color: #ddd;
+      margin-right: 1px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      font-size: inherit;
+    }
+
+    .tabs button.active {
+      background: #444;
+    }
+
+    .buttons button {
+      background: #333;
+      border: none;
+      padding: 0.75em 1em;
+      margin: 1em 0;
+      color: #ddd;
+      border-radius: 5px;
+      font-size: inherit;
+    }
+
+    .buttons button.active {
+      background: #444;
+    }
+
+    .email_data {
+      background: #444;
+      clear: both;
+      padding: 0.5em;
+    }
   </style>
 </head>
 
 <body>
+  <div class="content">
 
-  <div id="gjs" style="height:0px; overflow:hidden">
-    <mjml>
-      <mj-head>
-        <mj-font name="Barlow" href="https://fonts.googleapis.com/css?family=Barlow" />
+    <h1>Company Name</h1>
+    <h2>Campaign Name</h2>
 
-        <mj-style>
-          .slogan {
-            background: #000;
-          }
-        </mj-style>
-      </mj-head>
-      <mj-body>
-        <!-- Company Header -->
-        <mj-section background-color="#f0f0f0">
-          <mj-column>
-            <mj-text font-family="Barlow">A first line of text</mj-text>
-            <mj-spacer height="50px" />
-          </mj-column>
-        </mj-section>
+    <div class="tabs">
+      <button class="active">Attempt 1</button>
+      <button>Attempt 2</button>
+      <button>Attempt 3</button>
+      <button>+</button>
+    </div>
+    <form class="email_data">
+      <div class="input-group">
+        <label>Subject</label>
+        <input type="text" value="Hey wait don't go!" id="subject">
+      </div>
+      <div class="input-group">
+        <label>Preheader</label>
+        <input type="text" value="Have we got a deal for you" id="preheader">
+      </div>
+      <div class="input-group">
+        <label>From</label>
+        <input type="text" value="Company Name" id="from">
+      </div>
+    </form>
 
-        <!-- Image Header -->
-        <mj-section background-url="http://1.bp.blogspot.com/-TPrfhxbYpDY/Uh3Refzk02I/AAAAAAAALw8/5sUJ0UUGYuw/s1600/New+York+in+The+1960's+-+70's+(2).jpg"
-          background-size="cover" background-repeat="no-repeat">
-          <mj-column>
-            <mj-text css-class="slogan" align="center" color="#fff" font-size="40px" font-family="Helvetica Neue">Slogan here</mj-text>
-            <mj-button background-color="#F63A4D" href="#">
-              Promotion
-            </mj-button>
-          </mj-column>
-        </mj-section>
+    <div class="buttons">
+      <button class="active">Design</button>
+      <button>Code</button>
+    </div>
 
-        <!-- Intro text -->
-        <mj-wrapper background-color="#ffe9f7" padding="10px">
-          <mj-section background-color="#eaeffa">
-            <mj-group background-color="#fffadd">
-              <mj-column>
-                <mj-text font-style="italic" font-size="20px" font-family="Helvetica Neue" color="#626262">My Awesome Text</mj-text>
-                <mj-text color="#525252">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum enim eget magna efficitur, eu semper augue semper.
-                  Aliquam erat volutpat. Cras id dui lectus. Vestibulum sed finibus lectus, sit amet suscipit nibh. Proin nec
-                  commodo purus. Sed eget nulla elit. Nulla aliquet mollis faucibus.
-                </mj-text>
-                <mj-button background-color="#F45E43" href="#">Learn more</mj-button>
-              </mj-column>
-            </mj-group>
-          </mj-section>
-        </mj-wrapper>
 
-        <!-- Side image -->
-        <mj-section background-color="white">
-          <mj-column>
-            <mj-image width="200px" src="https://designspell.files.wordpress.com/2012/01/sciolino-paris-bw.jpg" />
-          </mj-column>
-          <mj-column>
-            <mj-text font-style="italic" font-size="20px" font-family="Helvetica Neue" color="#626262">
-              Find amazing places
-            </mj-text>
-            <mj-text color="#525252">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum enim eget magna efficitur, eu semper augue semper.
-              Aliquam erat volutpat. Cras id dui lectus. Vestibulum sed finibus lectus.</mj-text>
-          </mj-column>
-        </mj-section>
-        <!-- Icons -->
-        <mj-section background-color="#fbfbfb">
-          <mj-column>
-            <mj-image width="100px" src="http://191n.mj.am/img/191n/3s/x0l.png" />
-          </mj-column>
-          <mj-column>
-            <mj-image width="100px" src="http://191n.mj.am/img/191n/3s/x01.png" />
-          </mj-column>
-          <mj-column>
-            <mj-image width="100px" src="http://191n.mj.am/img/191n/3s/x0s.png" />
-          </mj-column>
-        </mj-section>
+    <div id="gjs" style="height:0px; overflow:hidden">
 
-        <!-- Footer -->
-        <mj-section background-color="#e7e7e7">
-          <mj-column>
-            <mj-button href="#">Hello There!</mj-button>
-            <mj-social font-size="15px" icon-size="30px" mode="horizontal">
-              <mj-social-element name="facebook" href="https://mjml.io/">
-                Facebook
-              </mj-social-element>
-              <mj-social-element name="google" href="https://mjml.io/">
-                Google
-              </mj-social-element>
-              <mj-social-element name="twitter" href="https://mjml.io/">
-                Twitter
-              </mj-social-element>
-            </mj-social>
-          </mj-column>
-        </mj-section>
-        <!-- Footer -->
-      </mj-body>
-    </mjml>
+    </div>
+
   </div>
 
 
   <script type="text/javascript">
+    var template = `<mjml>
+        <mj-head>
+          <!--Optional title element-->
+          <mj-title></mj-title>
+          <!--Fix for iphone 10-->
+          <mj-raw>
+            <meta name="x-apple-disable-message-reformatting">
+          </mj-raw>
+          <!--Set a custom breakpoint for the mobile size-->
+          <mj-breakpoint width="480px"></mj-breakpoint>
+          <!--Optional hidden preview text-->
+          <mj-preview></mj-preview>
+          <mj-font name="Roboto" href="https://fonts.googleapis.com/css?family=Roboto"></mj-font>
+          <mj-attributes>
+            <!--Any default attribute can be overwritten here-->
+            <mj-all font-family="Roboto, Helvetica, Arial, sans-serif" align="center" color="#333333" font-size="18px" line-height="140%"></mj-all>
+          </mj-attributes>
+          <!--Fix so that alt text shows for images-->
+          <mj-style inline="inline">
+            img {
+            color: #000000;
+            font-size: 14px;
+            line-height: 1;
+            text-align: center;
+            }
+          </mj-style>
+        </mj-head>
+        <mj-body background-color="#eeeeee">
+          <mj-section padding="0">
+            <mj-column>
+              <mj-image alt="" src="https://via.placeholder.com/600x50?text=LOGO" href="{{LINK1}}" padding="0" />
+            </mj-column>
+          </mj-section>
+
+          <mj-section padding="0">
+            <mj-column>
+              <mj-image alt="" src="https://via.placeholder.com/600x300?text=HERO" href="{{LINK1}}" padding="0" />
+            </mj-column>
+          </mj-section>
+
+          <mj-section background-color="#fff">
+            <mj-column>
+              <mj-text align="left">
+                <p>EXAMPLE_TEXT</p>
+                <p>Sincerely<br />
+                  <b>COMPANY</b></p>
+              </mj-text>
+              <mj-button background-color="#333" href="{{LINK1}}">Redeem Now</mj-button>
+            </mj-column>
+          </mj-section>
+
+          <mj-section background-color="#eee">
+            <mj-column>
+              <mj-text align="center">
+                <a href="" style="text-decoration: none;">
+                  <img alt="" src="https://via.placeholder.com/36x36?text=S" width="36px" />
+                </a>
+                <a href="" style="text-decoration: none;">
+                  <img alt="" src="https://via.placeholder.com/36x36?text=S" width="36px" />
+                </a>
+                <a href="" style="text-decoration: none;">
+                  <img alt="" src="https://via.placeholder.com/36x36?text=S" width="36px" />
+                </a>
+                <a href="" style="text-decoration: none;">
+                  <img alt="" src="https://via.placeholder.com/36x36?text=S" width="36px" />
+                </a>
+              </mj-text>
+            </mj-column>
+          </mj-section>
+
+          <mj-section background-color="#eeeeee" padding="0">
+            <mj-column>
+              <mj-divider border-width="1px" border-color="#ccc"></mj-divider>
+              <mj-text font-size="12px" align="center">
+                <p>&copy; {{date_now:yyyy}} COMPANY | ADDRESS<br />
+                  <a href="https://www.upsellit.com/hound/nomore.jsp?{{SESSIONID}}" style="color:#333">Unsubscribe</a>
+                </p>
+              </mj-text>
+            </mj-column>
+          </mj-section>
+
+        </mj-body>
+      </mjml>`;
+    var empty = `<mjml>
+        <mj-head>
+          <!--Optional title element-->
+          <mj-title></mj-title>
+          <!--Fix for iphone 10-->
+          <mj-raw>
+            <meta name="x-apple-disable-message-reformatting">
+          </mj-raw>
+          <!--Set a custom breakpoint for the mobile size-->
+          <mj-breakpoint width="480px" />
+          <!--Optional hidden preview text-->
+          <mj-preview></mj-preview>
+          <mj-font name="Roboto" href="https://fonts.googleapis.com/css?family=Roboto" />
+          <mj-attributes>
+            <!--Any default attribute can be overwritten here-->
+            <mj-text align="center" color="#333333" font-size="18px" line-height="140%" />
+            <mj-body background-color="#eeeeee" />
+            <mj-section background-color="#ffffff" />
+            <mj-all font-family="Roboto, Helvetica, Arial, sans-serif" />
+          </mj-attributes>
+          <!--Fix so that alt text shows for images-->
+          <mj-style inline="inline">
+            img {
+            color: #000000;
+            font-size: 14px;
+            line-height: 1;
+            text-align: center;
+            }
+          </mj-style>
+        </mj-head>
+        <mj-body>
+        </mj-body>
+      </mjml>`;
+
     var editor = grapesjs.init({
       height: '100%',
-      noticeOnUnload: 0,
-      storageManager: { autoload: 0 },
+      storageManager: {
+        autoload: 0
+      },
       container: '#gjs',
-      fromElement: true,
+      components: empty,
+      //importPlaceholder: empty,
+      //categoryLabel: "testing",
+      //modalTitleImport: "testing",
+      preMjml: "testing",
+
 
       plugins: ['grapesjs-mjml'],
       pluginsOpts: {

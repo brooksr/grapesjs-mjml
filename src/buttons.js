@@ -18,6 +18,27 @@ export default (editor, opt = {}) => {
     className: 'fa fa-download',
     command: 'mjml-import',
   });
+  
+  pnm.addButton('options', {
+    id: opt.cmdTglImages,
+    className: 'fa fa-warning',
+    command: opt.cmdTglImages,
+    attributes: {[tltAttr]: opt.cmtTglImagesLabel},
+  });
+
+  pnm.addButton('options', {
+    id: 'clear-all',
+    className: 'fa fa-trash',
+    attributes: {title: 'Clear canvas'},
+    command: 'clear-all'
+  });
+
+  pnm.addButton('options', {
+    id: 'eoa-test',
+    className: 'fa fa-paper-plane',
+    attributes: {title: 'EOA Test'},
+    command: 'eoa-test'
+  });
 
   if (optPanel) {
     // Fix tooltip position

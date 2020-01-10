@@ -14,6 +14,8 @@ export default (editor, opt = {}) => {
     cmdBtnDesktopLabel: 'Desktop',
     cmdBtnTabletLabel: 'Tablet',
     cmdBtnMobileLabel: 'Mobile',
+    cmdTglImages: 'gjs-toggle-images',
+    cmtTglImagesLabel: 'Toggle Images',
 
     expTplBtnTitle: 'View Code',
     fullScrBtnTitle: 'FullScreen',

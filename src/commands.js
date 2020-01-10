@@ -24,6 +24,37 @@ export default (editor, opt = {}) => {
       editor.UndoManager.redo(1);
     }
   });
+  cmd.add('clear-all', {
+    run(editor, sender) {
+      sender && sender.set('active', false);
+      if(confirm('Are you sure you want to clean the canvas?')){
+        editor.DomComponents.clear();
+        setTimeout(function(){
+          localStorage.clear();
+        },0);
+      }
+    }
+  });
+  cmd.add('eoa-test', {
+    run(editor, sender) {
+      sender.set('active', 0);
+      fetch('https://api.emailonacid.com/v5/email/tests', {
+        method: 'POST',
+        headers: { 'Authorization': 'Basic NTY3ZWIzM2I4MzZhNjExYTExNjRkMWM2NmI0ZjcyMzQwZmZlYzliMTp1cHNlbGxpdDEyMw==' },
+        body: JSON.stringify({
+          "subject": "My Email Subject",
+          "html": editor.Commands.run('mjml-get-code').html
+        })
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          window.open("https://app.emailonacid.com/app/acidtest/"+data.id+"/list", "emailonacid");
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+  });
   cmd.add('set-device-desktop', {
     run(editor) {
       editor.setDevice('Desktop');
