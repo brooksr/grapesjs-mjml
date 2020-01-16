@@ -184,9 +184,9 @@
           </mj-style>
         </mj-head>
         <mj-body background-color="#eeeeee">
-          <mj-section padding="0">
+          <mj-section>
             <mj-column>
-              <mj-image alt="" src="https://via.placeholder.com/600x50?text=LOGO" href="{{LINK1}}" padding="0" />
+              <mj-image alt="" src="https://via.placeholder.com/200x50?text=LOGO" width="200px" href="{{LINK1}}" padding="0" />
             </mj-column>
           </mj-section>
 
@@ -203,32 +203,19 @@
                 <p>Sincerely<br />
                   <b>COMPANY</b></p>
               </mj-text>
-              <mj-button background-color="#333" href="{{LINK1}}">Redeem Now</mj-button>
             </mj-column>
           </mj-section>
 
-          <mj-section background-color="#eee">
-            <mj-column>
-              <mj-text align="center">
-                <a href="" style="text-decoration: none;">
-                  <img alt="" src="https://via.placeholder.com/36x36?text=S" width="36px" />
-                </a>
-                <a href="" style="text-decoration: none;">
-                  <img alt="" src="https://via.placeholder.com/36x36?text=S" width="36px" />
-                </a>
-                <a href="" style="text-decoration: none;">
-                  <img alt="" src="https://via.placeholder.com/36x36?text=S" width="36px" />
-                </a>
-                <a href="" style="text-decoration: none;">
-                  <img alt="" src="https://via.placeholder.com/36x36?text=S" width="36px" />
-                </a>
-              </mj-text>
-            </mj-column>
-          </mj-section>
+          <mj-social font-size="12px" icon-size="24px" border-radius="12px" mode="horizontal">
+            <mj-social-element name="facebook-noshare"></mj-social-element>
+            <mj-social-element name="instagram-noshare"></mj-social-element>
+            <mj-social-element name="twitter-noshare"></mj-social-element>
+            <mj-social-element name="youtube-noshare"></mj-social-element>
+            <mj-social-element name="pinterest-noshare"></mj-social-element>
+          </mj-social>
 
           <mj-section background-color="#eeeeee" padding="0">
             <mj-column>
-              <mj-divider border-width="1px" border-color="#ccc"></mj-divider>
               <mj-text font-size="12px" align="center">
                 <p>&copy; {{date_now:yyyy}} COMPANY | ADDRESS<br />
                   <a href="https://www.upsellit.com/hound/nomore.jsp?{{SESSIONID}}" style="color:#333">Unsubscribe</a>
