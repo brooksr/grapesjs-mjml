@@ -30,6 +30,7 @@ export default (editor, opt = {}) => {
       sender && sender.set('active', false);
       if(confirm('Are you sure you want to clean the canvas?')){
         editor.DomComponents.clear();
+        editor.addComponents(window.templates.empty);
         setTimeout(function(){
           localStorage.clear();
         },0);
