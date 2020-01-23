@@ -1,5 +1,4 @@
 import tglImagesCommand from './toggleImagesCommand';
-import importCommand from './command-import-mjml';
 import exportCommand from './command-export-mjml';
 import editCommand from './command-edit-code';
 import API_KEY from '../config';
@@ -9,7 +8,6 @@ export default (editor, opt = {}) => {
   const exportName = opt.overwriteExport ? 'export-template' : 'mjml-export';
 
   cmd.add('edit-code', editCommand(editor, opt));
-  cmd.add('mjml-import', importCommand(editor, opt));
   cmd.add(exportName, exportCommand(editor, opt));
 
   cmd.add(opt.cmdTglImages, tglImagesCommand(opt));

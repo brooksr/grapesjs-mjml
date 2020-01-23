@@ -1,28 +1,12 @@
-import mjml2html from 'mjml';
-
 export default (editor, opt = {}) => {
   const config = editor.getConfig();
   const codeViewer = editor.CodeManager.getViewer('CodeMirror').clone();
   const container = document.createElement('div');
-  const cmdm = editor.Commands;
-  //container.style = 'display: flex; justify-content: space-between;';
 
   // Init code viewer
   codeViewer.set({
     codeName: 'htmlmixed',
     theme: opt.codeViewerTheme,
-  });
-
-  const getMjml = () => {
-    const mjml = opt.preMjml + editor.getHtml() + opt.postMjml;
-    return mjml2html(mjml);
-  };
-
-  // Set the command which could be used outside
-  cmdm.add('edit-code', {
-    run() {
-      return getMjml();
-    }
   });
 
   let mjmlCode;
@@ -35,6 +19,7 @@ export default (editor, opt = {}) => {
       const txtarea = document.createElement('textarea');
       const el = document.createElement('div');
       el.style = 'flex:1 0 auto; padding:5px; max-width:100%; box-sizing:border-box;';
+      const pfx = config.stylePrefix || '';
 
       const codeEditor = cm.set({
         label: label,
@@ -46,6 +31,7 @@ export default (editor, opt = {}) => {
 
       const btn = document.createElement("button");
       btn.textContent = "Save";
+      btn.className = `${pfx}btn-prim ${pfx}btn-edit`;
       btn.onclick = () => {
         editor.DomComponents.clear();
         editor.addComponents(opt.preMjml + codeEditor.getContent() + opt.postMjml);
