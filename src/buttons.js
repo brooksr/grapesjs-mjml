@@ -14,6 +14,12 @@ export default (editor, opt = {}) => {
 
 
   pnm.addButton('options', {
+    id: 'edit-code',
+    className: 'fa fa-pencil',
+    command: 'edit-code',
+  });
+
+  pnm.addButton('options', {
     id: 'mjml-import',
     className: 'fa fa-download',
     command: 'mjml-import',

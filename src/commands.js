@@ -1,12 +1,14 @@
 import tglImagesCommand from './toggleImagesCommand';
 import importCommand from './command-import-mjml';
 import exportCommand from './command-export-mjml';
+import editCommand from './command-edit-code';
 import API_KEY from '../config';
 
 export default (editor, opt = {}) => {
   const cmd = editor.Commands;
   const exportName = opt.overwriteExport ? 'export-template' : 'mjml-export';
 
+  cmd.add('edit-code', editCommand(editor, opt));
   cmd.add('mjml-import', importCommand(editor, opt));
   cmd.add(exportName, exportCommand(editor, opt));
 
@@ -30,7 +32,7 @@ export default (editor, opt = {}) => {
       sender && sender.set('active', false);
       if(confirm('Are you sure you want to clean the canvas?')){
         editor.DomComponents.clear();
-        editor.addComponents(window.templates.empty);
+        editor.addComponents(window.data.templates.empty);
         setTimeout(function(){
           localStorage.clear();
         },0);

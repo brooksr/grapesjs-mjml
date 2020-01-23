@@ -7,7 +7,7 @@
   <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
   <script src="https://unpkg.com/grapesjs"></script>
   <script src="dist/grapesjs-mjml.min.js"></script>
-  <script src="src/templates.js"></script>
+  <script src="src/data.js"></script>
   <style>
     body,
     html {
@@ -64,15 +64,17 @@
     .input-group label {
       width: 15%;
       display: inline-block;
+      vertical-align: top;
     }
 
-    .input-group input {
+    .input-group input, .input-group textarea {
       width: 82%;
       display: inline-block;
       border-radius: 5px;
       background: #eee;
       padding: 0.5%;
       border: none;
+      resize: vertical;
     }
 
     .tabs {
@@ -113,6 +115,18 @@
       clear: both;
       padding: 0.5em;
     }
+    .gjs-mdl-dialog {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+    }
+    .CodeMirror {
+      height: 100%;
+    }
+    .CodeMirror-scroll {
+      height: auto;
+      max-height: 90vh;
+    }
   </style>
 </head>
 
@@ -123,60 +137,109 @@
     <h2>Campaign Name</h2>
 
     <div class="tabs">
-      <button class="active">Attempt 1</button>
-      <button>Attempt 2</button>
-      <button>Attempt 3</button>
+      <button data-tab="a1" class="active">Attempt 1</button>
+      <button data-tab="a2">Attempt 2</button data-id="a1">
+      <button data-tab="a3">Attempt 3</button data-id="a1">
       <button>+</button>
     </div>
-    <form class="email_data">
-      <div class="input-group">
-        <label>Subject</label>
-        <input type="text" value="Hey wait don't go!" id="subject">
-      </div>
-      <div class="input-group">
-        <label>Preheader</label>
-        <input type="text" value="Have we got a deal for you" id="preheader">
-      </div>
-      <div class="input-group">
-        <label>From</label>
-        <input type="text" value="Company Name" id="from">
-      </div>
-    </form>
-
-    <div class="buttons">
-      <button class="active">Design</button>
-      <button>Code</button>
+    <div class="panels">
+      <form class="email_data" data-panel="a1">
+        <div class="input-group">
+          <label>Subject</label>
+          <input type="text" value="Hey wait don't go!" id="subject">
+        </div>
+        <div class="input-group">
+          <label>Preheader</label>
+          <input type="text" value="Have we got a deal for you" id="preheader">
+        </div>
+        <div class="input-group">
+          <label>From</label>
+          <input type="text" value="Company Name" id="from">
+        </div>
+        <div class="input-group">
+          <label>Body</label>
+          <textarea id="body" rows="10"></textarea>
+        </div>
+      </form>
+      <form class="email_data" data-panel="a2">
+        <div class="input-group">
+          <label>Subject</label>
+          <input type="text" value="2" id="subject">
+        </div>
+        <div class="input-group">
+          <label>Preheader</label>
+          <input type="text" value="2" id="preheader">
+        </div>
+        <div class="input-group">
+          <label>From</label>
+          <input type="text" value="2" id="from">
+        </div>
+        <div class="input-group">
+          <label>Body</label>
+          <textarea id="body" rows="10"></textarea>
+        </div>
+      </form>
+      <form class="email_data" data-panel="a3">
+        <div class="input-group">
+          <label>Subject</label>
+          <input type="text" value="3" id="subject">
+        </div>
+        <div class="input-group">
+          <label>Preheader</label>
+          <input type="text" value="3" id="preheader">
+        </div>
+        <div class="input-group">
+          <label>From</label>
+          <input type="text" value="3" id="from">
+        </div>
+        <div class="input-group">
+          <label>Body</label>
+          <textarea id="body" rows="10"></textarea>
+        </div>
+      </form>
     </div>
 
-
-    <div id="gjs" style="height:0px; overflow:hidden">
-
-    </div>
+    <div id="gjs" style="height:0px; overflow:hidden"></div>
 
   </div>
 
 
   <script type="text/javascript">
-    var editor = grapesjs.init({
+    var show_panel = function(tab){
+      var tab_id = tab.getAttribute("data-tab");
+      var panel = document.querySelector("[data-panel='"+tab_id+"']");
+      if (panel != null) {
+        var panels = panel.parentNode.querySelectorAll("[data-panel]");
+        panels.forEach(p => p.style.display = "none");
+        panel.style.display = "block";
+      }
+    };
+    var tab_click = function(event){
+      event.target.parentNode.querySelectorAll("[data-tab]").forEach(tab => tab.classList.remove("active"));
+      event.target.classList.add("active");
+      show_panel(event.target);
+    };
+
+    var tabs = document.querySelectorAll(".tabs");
+    tabs.forEach(tab_group => {
+      var tab = tab_group.querySelector("[data-tab].active");
+      if (tab != null) show_panel(tab);
+      document.querySelectorAll("[data-tab]").forEach(tab => tab.addEventListener("click", tab_click));
+    });
+
+    window.editor = grapesjs.init({
       height: '100%',
       storageManager: {
         autoload: 0
       },
       container: '#gjs',
-      components: templates.default,
-      //importPlaceholder: empty,
-      //categoryLabel: "testing",
-      //modalTitleImport: "testing",
-      preMjml: "testing",
-
+      components: window.data.templates.default,
 
       plugins: ['grapesjs-mjml'],
       pluginsOpts: {
         'grapesjs-mjml': {}
       }
     });
-
-    window.editor = editor;
   </script>
 </body>
 
